@@ -1,0 +1,858 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Web IDE</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+ 
+    <!-- CodeMirror core + modes -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/show-hint.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/show-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/xml-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/css-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/javascript-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/dialog/dialog.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/search.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/searchcursor.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/dialog/dialog.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/3024-day.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/3024-night.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/abbott.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/abcdef.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/ambiance.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/ayu-dark.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/ayu-mirage.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/base16-dark.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/base16-light.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/bespin.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/blackboard.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/cobalt.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/colorforth.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/darcula.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/duotone-dark.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/duotone-light.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/eclipse.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/elegant.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/erlang-dark.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/gruvbox-dark.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/hopscotch.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/icecoder.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/idea.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/isotope.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/juejin.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/lesser-dark.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/liquibyte.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/lucario.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-palenight.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-ocean.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/mbo.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/mdn-like.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/midnight.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/monokai.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/moxer.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/neat.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/neo.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/night.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/nord.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/oceanic-next.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/panda-syntax.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/paraiso-dark.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/paraiso-light.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/pastel-on-dark.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/railscasts.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/rubyblue.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/seti.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/shadowfox.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/solarized.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/ssms.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/the-matrix.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/tomorrow-night-bright.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/tomorrow-night-eighties.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/ttcn.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/twilight.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/vibrant-ink.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/xq-dark.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/xq-light.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/yeti.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/yonce.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/zenburn.min.css"
+    />
+    <script src="https://unpkg.com/prettier@3.0.0/standalone.js"></script>
+    <script src="https://unpkg.com/prettier@3.0.0/plugins/babel.js"></script>
+    <script src="https://unpkg.com/prettier@3.6.2/plugins/html.js"></script>
+    <script src="https://unpkg.com/prettier@3.0.0/plugins/postcss.js"></script>
+    <script src="https://unpkg.com/prettier@3.6.2/plugins/estree.js"></script>
+    <!-- Optional: replace/replaceAll support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/jump-to-line.min.js"></script>
+
+    <!-- ZIP download -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism-okaidia.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-markup.min.js"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+ <link rel="stylesheet" href="style.css">
+    <link
+      href="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAASUlJADo6OgArKysAUR04AA0NDQBPKhwAR0dHAFEqHAA4ODgAKSkpAEInHQAaGhoAVFRUADYYJwBFRUUANjY2ADQgGQAnJycACwYJAFQaSgBKHUIAUlJSAENDQwAvHhcANDQ0AEQcPQAWFhYALxcrAD4bOABQUFAAJxMeAEFBQQA/JRwAMjIyAFUdOgAjIyMAFBQUAEQbMAAFBQUATk5OACwVIQA/Pz8AXBw9ADAwMAAhISEAEhISAFIbSQBMTEwAZBtAAD09PQAuLi4AHA4VAB8fHwAWFBUAEBAQAEwdRABFKB0ASkpKADs7OwAsLCwAHR0dAAUDBAA6GjUAMhclAEhISABZHTwAOTk5ACoqKgAbGxsATR1FAD8aLQBVVVUARkZGAGAcPwBRHEgAIRAZADc3NwAoKCgAQiYcABkZGQAKCgoAZxtCAFNTUwBEREQANhkxADU1NQAmJiYAMx8YABcXFwARCQ0ATCkcAAgICABRUVEAQkJCADMzMwAkJCQATR02ABUVFQA7JBsAT09PAEgpHQD///8AQEBAAEopHQAxMTEATx1HAAQEBABVKhoAOxkqADsbNQBNTU0APj4+AFcYTQAvLy8AFgsRACAgIABHHUAASB1AADw8PAAtLS0AMxguAEEcOwAeHh4AUyobAA8PDwBWGUsAOCIaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAViIsPApXJDUMGy4FXGsAAAlWXyx4MwMkNUVZLn0TPgACCVZfVlgYAyQ1RQxzWhMnMgJDd2N/EXISJCRMNDY3USpwFwshY00zAzwpH3QMJTdeQWU5T3AZaRkOQAotPVBiMFtoZRdDTTtHbWlOYC09UAgGWwFwdyBmJglyPHgKLXt8CG9eZ2YEYSpWZhB5HEQkbF0PFzBCIw9mCTJuVXkzEg0HSWRKKzoqMl56HT8QeERBBwdSMSheIEF1Gnp3GWkzAUFBUxYPVG84FXYXQ00ZaQFBAQEHB11LakZBcHdDTRkBAQFBQVMUL0swIGdwO0NNAQEBQUhxfhQeVBcgZ3B3QwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+      rel="icon"
+      type="image/x-icon"
+    />
+
+    
+  </head>
+  <body>
+    <header>
+      <h2>
+        <img
+          alt=""
+          style="
+            height: 35px;
+            border-radius: 8px;
+            vertical-align: middle;
+            margin-right: 4px;
+          "
+          src="data:image/png;base64,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"
+        />
+        Web IDE
+      </h2>
+      <div class="spacer"></div>
+      <div class="toolbar">
+        <div class="btndiv">
+          <p style="display: inline-block">Tools:&nbsp;&nbsp;</p>
+          <button id="settingsBtn" class="btn ghost">Settings</button>
+          <button id="colorPickerBtn" class="btn ghost">Color Chooser</button>
+          
+   
+         <button id="btnOpenC" class="btn ghost">
+            <svg
+              style="height: 13px"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Gemini</title>
+              <path
+                d="M20.616 10.835a14.147 14.147 0 01-4.45-3.001 14.111 14.111 0 01-3.678-6.452.503.503 0 00-.975 0 14.134 14.134 0 01-3.679 6.452 14.155 14.155 0 01-4.45 3.001c-.65.28-1.318.505-2.002.678a.502.502 0 000 .975c.684.172 1.35.397 2.002.677a14.147 14.147 0 014.45 3.001 14.112 14.112 0 013.679 6.453.502.502 0 00.975 0c.172-.685.397-1.351.677-2.003a14.145 14.145 0 013.001-4.45 14.113 14.113 0 016.453-3.678.503.503 0 000-.975 13.245 13.245 0 01-2.003-.678z"
+                fill="#3186FF"
+              ></path>
+              <path
+                d="M20.616 10.835a14.147 14.147 0 01-4.45-3.001 14.111 14.111 0 01-3.678-6.452.503.503 0 00-.975 0 14.134 14.134 0 01-3.679 6.452 14.155 14.155 0 01-4.45 3.001c-.65.28-1.318.505-2.002.678a.502.502 0 000 .975c.684.172 1.35.397 2.002.677a14.147 14.147 0 014.45 3.001 14.112 14.112 0 013.679 6.453.502.502 0 00.975 0c.172-.685.397-1.351.677-2.003a14.145 14.145 0 013.001-4.45 14.113 14.113 0 016.453-3.678.503.503 0 000-.975 13.245 13.245 0 01-2.003-.678z"
+                fill="url(#lobe-icons-gemini-fill-0)"
+              ></path>
+              <path
+                d="M20.616 10.835a14.147 14.147 0 01-4.45-3.001 14.111 14.111 0 01-3.678-6.452.503.503 0 00-.975 0 14.134 14.134 0 01-3.679 6.452 14.155 14.155 0 01-4.45 3.001c-.65.28-1.318.505-2.002.678a.502.502 0 000 .975c.684.172 1.35.397 2.002.677a14.147 14.147 0 014.45 3.001 14.112 14.112 0 013.679 6.453.502.502 0 00.975 0c.172-.685.397-1.351.677-2.003a14.145 14.145 0 013.001-4.45 14.113 14.113 0 016.453-3.678.503.503 0 000-.975 13.245 13.245 0 01-2.003-.678z"
+                fill="url(#lobe-icons-gemini-fill-1)"
+              ></path>
+              <path
+                d="M20.616 10.835a14.147 14.147 0 01-4.45-3.001 14.111 14.111 0 01-3.678-6.452.503.503 0 00-.975 0 14.134 14.134 0 01-3.679 6.452 14.155 14.155 0 01-4.45 3.001c-.65.28-1.318.505-2.002.678a.502.502 0 000 .975c.684.172 1.35.397 2.002.677a14.147 14.147 0 014.45 3.001 14.112 14.112 0 013.679 6.453.502.502 0 00.975 0c.172-.685.397-1.351.677-2.003a14.145 14.145 0 013.001-4.45 14.113 14.113 0 016.453-3.678.503.503 0 000-.975 13.245 13.245 0 01-2.003-.678z"
+                fill="url(#lobe-icons-gemini-fill-2)"
+              ></path>
+              <defs>
+                <linearGradient
+                  gradientUnits="userSpaceOnUse"
+                  id="lobe-icons-gemini-fill-0"
+                  x1="7"
+                  x2="11"
+                  y1="15.5"
+                  y2="12"
+                >
+                  <stop stop-color="#08B962"></stop>
+                  <stop offset="1" stop-color="#08B962" stop-opacity="0"></stop>
+                </linearGradient>
+                <linearGradient
+                  gradientUnits="userSpaceOnUse"
+                  id="lobe-icons-gemini-fill-1"
+                  x1="8"
+                  x2="11.5"
+                  y1="5.5"
+                  y2="11"
+                >
+                  <stop stop-color="#F94543"></stop>
+                  <stop offset="1" stop-color="#F94543" stop-opacity="0"></stop>
+                </linearGradient>
+                <linearGradient
+                  gradientUnits="userSpaceOnUse"
+                  id="lobe-icons-gemini-fill-2"
+                  x1="3.5"
+                  x2="17.5"
+                  y1="13.5"
+                  y2="12"
+                >
+                  <stop stop-color="#FABC12"></stop>
+                  <stop
+                    offset=".46"
+                    stop-color="#FABC12"
+                    stop-opacity="0"
+                  ></stop>
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <svg
+              style="height: 13px"
+              fill="currentColor"
+              fill-rule="evenodd"
+              viewBox="0 0 98 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Gemini</title>
+              <path
+                d="M21.186 12.67c0 2.649-.786 4.759-2.359 6.33-1.766 1.87-4.09 2.806-6.969 2.806-2.756 0-5.088-.953-6.996-2.86C2.954 17.04 2 14.693 2 11.904c0-2.789.954-5.137 2.862-7.043C6.77 2.953 9.102 2 11.858 2c1.396 0 2.712.247 3.949.741 1.236.495 2.252 1.192 3.047 2.092l-1.749 1.748c-.583-.706-1.338-1.258-2.266-1.655a7.49 7.49 0 00-2.981-.596c-2.067 0-3.816.715-5.247 2.145-1.413 1.448-2.12 3.257-2.12 5.428s.707 3.98 2.12 5.428c1.431 1.43 3.18 2.145 5.247 2.145 1.89 0 3.463-.53 4.717-1.588 1.254-1.06 1.979-2.516 2.173-4.37h-6.89v-2.277h9.196c.088.495.132.971.132 1.43m7.652-4.633c1.946 0 3.494.629 4.645 1.886 1.15 1.257 1.726 3.018 1.726 5.282l-.027.268H24.877c.036 1.284.464 2.318 1.285 3.102.82.785 1.802 1.177 2.944 1.177 1.57 0 2.802-.784 3.694-2.354l2.195 1.07a6.54 6.54 0 01-2.45 2.595C31.503 21.688 30.32 22 29 22c-1.927 0-3.516-.66-4.765-1.98-1.249-1.319-1.873-2.986-1.873-5.001 0-1.997.606-3.66 1.82-4.988 1.213-1.329 2.766-1.993 4.657-1.993m-.053 2.247c-.928 0-1.727.285-2.396.856-.67.57-1.11 1.337-1.325 2.3h7.522c-.071-.91-.442-1.663-1.111-2.26-.67-.598-1.566-.896-2.69-.896M39.247 21.53h-2.455V8.465h2.348v1.813h.107c.374-.64.947-1.173 1.721-1.6.774-.427 1.544-.64 2.309-.64.96 0 1.806.222 2.535.667a3.931 3.931 0 011.601 1.84c1.085-1.671 2.589-2.507 4.51-2.507 1.513 0 2.678.462 3.496 1.387.819.924 1.228 2.24 1.228 3.946v8.16h-2.455v-7.786c0-1.227-.223-2.112-.668-2.654-.444-.542-1.192-.813-2.241-.813-.943 0-1.735.4-2.375 1.2-.64.8-.961 1.742-.961 2.826v7.227h-2.455v-7.786c0-1.227-.223-2.112-.668-2.654-.444-.542-1.191-.813-2.241-.813-.943 0-1.735.4-2.375 1.2-.64.8-.961 1.742-.961 2.826v7.227zM61.911 3.93c0 .48-.17.89-.508 1.228a1.675 1.675 0 01-1.23.508c-.48 0-.89-.17-1.229-.508a1.673 1.673 0 01-.508-1.228c0-.481.17-.89.508-1.229a1.675 1.675 0 011.23-.508c.48 0 .89.17 1.23.508.338.338.507.748.507 1.228m-.11 4.514v13.088h-2.857V8.443h2.857zM80 3.93c0 .48-.17.89-.508 1.228a1.675 1.675 0 01-1.23.508c-.48 0-.89-.17-1.229-.508a1.673 1.673 0 01-.508-1.228c0-.481.17-.89.508-1.229a1.675 1.675 0 011.23-.508c.48 0 .89.17 1.23.508.338.338.507.748.507 1.228m-.11 4.514v13.088h-2.857V8.443h2.857zm-16.343.022h2.349v1.813h.107c.373-.64.947-1.173 1.721-1.6a4.935 4.935 0 012.415-.64c1.601 0 2.833.458 3.696 1.373.863.916 1.294 2.218 1.294 3.907v8.213h-2.455v-8.053c-.053-2.133-1.13-3.2-3.229-3.2-.978 0-1.797.395-2.455 1.187-.658.79-.987 1.737-.987 2.84v7.226h-2.456V8.465z"
+              ></path>
+            </svg>
+          </button> 
+   
+          <button id="toggleBtn" class="btn ghost">
+            <svg
+              style="height: 13px"
+              version="1.0"
+              id="Layer_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0px"
+              y="0px"
+              viewBox="0 0 492 110"
+              enable-background="new 0 0 492 110"
+              xml:space="preserve"
+            >
+              <g>
+                <g>
+                  <path
+                    fill="#FF0000"
+                    d="M154.3,17.5c-1.8-6.7-7.1-12-13.8-13.8c-12.1-3.3-60.8-3.3-60.8-3.3S31,0.5,18.9,3.8
+			c-6.7,1.8-12,7.1-13.8,13.8C1.9,29.7,1.9,55,1.9,55s0,25.3,3.3,37.5c1.8,6.7,7.1,12,13.8,13.8c12.1,3.3,60.8,3.3,60.8,3.3
+			s48.7,0,60.8-3.3c6.7-1.8,12-7.1,13.8-13.8c3.3-12.1,3.3-37.5,3.3-37.5S157.6,29.7,154.3,17.5z"
+                  />
+                  <polygon
+                    fill="#FFFFFF"
+                    points="64.2,78.4 104.6,55 64.2,31.6 		"
+                  />
+                </g>
+                <g>
+                  <g>
+                    <path
+                      fill="var(--text)"
+                      d="M227.9,99.7c-3.1-2.1-5.3-5.3-6.6-9.7c-1.3-4.4-1.9-10.2-1.9-17.5v-9.9c0-7.3,0.7-13.3,2.2-17.7
+				c1.5-4.5,3.8-7.7,7-9.7c3.2-2,7.3-3.1,12.4-3.1c5,0,9.1,1,12.1,3.1c3,2.1,5.3,5.3,6.7,9.7c1.4,4.4,2.1,10.3,2.1,17.6v9.9
+				c0,7.3-0.7,13.1-2.1,17.5c-1.4,4.4-3.6,7.6-6.7,9.7c-3.1,2-7.3,3.1-12.5,3.1C235.2,102.8,231,101.7,227.9,99.7z M245.2,89
+				c0.9-2.2,1.3-5.9,1.3-10.9V56.8c0-4.9-0.4-8.5-1.3-10.7c-0.9-2.3-2.4-3.4-4.5-3.4c-2.1,0-3.5,1.1-4.4,3.4
+				c-0.9,2.3-1.3,5.8-1.3,10.7v21.3c0,5,0.4,8.7,1.2,10.9c0.8,2.2,2.3,3.3,4.5,3.3C242.8,92.3,244.3,91.2,245.2,89z"
+                    />
+                    <path
+                      fill="var(--text)"
+                      d="M464.4,72.7v3.5c0,4.4,0.1,7.7,0.4,9.9c0.3,2.2,0.8,3.8,1.6,4.8c0.8,1,2.1,1.5,3.8,1.5
+				c2.3,0,3.9-0.9,4.7-2.7c0.9-1.8,1.3-4.8,1.4-8.9l13.3,0.8c0.1,0.6,0.1,1.4,0.1,2.4c0,6.3-1.7,11-5.2,14.1
+				c-3.5,3.1-8.3,4.7-14.6,4.7c-7.6,0-12.9-2.4-15.9-7.1c-3-4.7-4.6-12.1-4.6-22V61.6c0-10.2,1.6-17.7,4.7-22.4
+				c3.2-4.7,8.6-7.1,16.2-7.1c5.3,0,9.3,1,12.1,2.9c2.8,1.9,4.8,4.9,6,9c1.2,4.1,1.7,9.7,1.7,16.9v11.7H464.4z M466.4,43.9
+				c-0.8,1-1.3,2.5-1.6,4.7c-0.3,2.2-0.4,5.5-0.4,10v4.9h11.2v-4.9c0-4.4-0.1-7.7-0.4-10c-0.3-2.3-0.8-3.9-1.6-4.8
+				c-0.8-0.9-2-1.4-3.6-1.4C468.3,42.5,467.1,43,466.4,43.9z"
+                    />
+                    <path
+                      fill="var(--text)"
+                      d="M190.5,71.4L173,8.2h15.3l6.1,28.6c1.6,7.1,2.7,13.1,3.5,18h0.4c0.5-3.6,1.7-9.5,3.5-17.9l6.3-28.7h15.3
+				l-17.7,63.1v30.3h-15.1V71.4z"
+                    />
+                    <path
+                      fill="var(--text)"
+                      d="M311.5,33.4v68.3h-12l-1.3-8.4h-0.3c-3.3,6.3-8.2,9.5-14.7,9.5c-4.5,0-7.9-1.5-10-4.5
+				c-2.2-3-3.2-7.6-3.2-13.9v-51h15.4v50.1c0,3,0.3,5.2,1,6.5c0.7,1.3,1.8,1.9,3.3,1.9c1.3,0,2.6-0.4,3.8-1.2
+				c1.2-0.8,2.1-1.9,2.7-3.1V33.4H311.5z"
+                    />
+                    <path
+                      fill="var(--text)"
+                      d="M390.4,33.4v68.3h-12l-1.3-8.4h-0.3c-3.3,6.3-8.2,9.5-14.7,9.5c-4.5,0-7.9-1.5-10-4.5
+				c-2.2-3-3.2-7.6-3.2-13.9v-51h15.4v50.1c0,3,0.3,5.2,1,6.5c0.7,1.3,1.8,1.9,3.3,1.9c1.3,0,2.6-0.4,3.8-1.2
+				c1.2-0.8,2.1-1.9,2.7-3.1V33.4H390.4z"
+                    />
+                    <path
+                      fill="var(--text)"
+                      d="M353.3,20.6H338v81.1h-15V20.6h-15.3V8.2h45.5V20.6z"
+                    />
+                    <path
+                      fill="var(--text)"
+                      d="M441.2,44.3c-0.9-4.3-2.4-7.4-4.5-9.4c-2.1-1.9-4.9-2.9-8.6-2.9c-2.8,0-5.5,0.8-7.9,2.4
+				c-2.5,1.6-4.3,3.7-5.7,6.3h-0.1l0-36h-14.8v96.9h12.7l1.6-6.5h0.3c1.2,2.3,3,4.1,5.3,5.5c2.4,1.3,5,2,7.9,2c5.2,0,9-2.4,11.5-7.2
+				c2.4-4.8,3.7-12.3,3.7-22.4V62.2C442.6,54.6,442.1,48.6,441.2,44.3z M427.1,72.2c0,5-0.2,8.9-0.6,11.7c-0.4,2.8-1.1,4.8-2.1,6
+				c-1,1.2-2.3,1.8-3.9,1.8c-1.3,0-2.4-0.3-3.5-0.9c-1.1-0.6-1.9-1.5-2.6-2.7V49.3c0.5-1.9,1.4-3.4,2.7-4.6c1.3-1.2,2.6-1.8,4.1-1.8
+				c1.6,0,2.8,0.6,3.6,1.8c0.9,1.2,1.4,3.3,1.8,6.2c0.3,2.9,0.5,7,0.5,12.4V72.2z"
+                    />
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </button>
+        </div>
+        <div class="btndiv">
+          <div style="width: 20px"></div>
+
+          <p style="display: inline-block">Tabs:&nbsp;&nbsp;</p>
+          <button id="addTabBtn" class="btn ghost">+ Add</button>
+          <button id="renameTabBtn" class="btn ghost">Rename</button>
+          <button id="removeTabBtn" class="btn danger">Remove</button>
+        </div>
+
+        <div class="btndiv">
+          <p style="display: inline-block">Files:&nbsp;&nbsp;</p>
+
+          <button id="formatBtn" class="btn ghost">Format</button>
+          <button id="combineFilesBtn" class="btn ghost">Combine Files</button>
+          <button id="importBtn" class="btn succes">Import</button>
+          <input type="file" id="fileInput" style="display: none" />
+
+          <button id="downloadBtn" class="btn success">Download</button>
+        </div>
+
+        <div class="btndiv">
+          <p style="display: inline-block">Preview: &nbsp;&nbsp;</p>
+
+          <button id="runBtn" class="btn primary">Refresh</button>
+          <!-- In the toolbar -->
+          <button id="togglePreviewBtn" class="btn ghost">Toggle</button>
+        </div>
+      </div>
+    </header>
+
+    <div id="tabs" class="tabs"></div>
+
+    <div class="layout">
+      <div class="pane editor">
+        <div class="pane-title">Editor</div>
+        <div class="editor-wrap"><textarea id="editor"></textarea></div>
+      </div>
+      <div class="pane preview">
+        <div class="pane-title">Preview</div>
+        <iframe
+          id="preview"
+          sandbox="allow-scripts allow-modals allow-forms allow-pointer-lock allow-same-origin allow-presentation"
+        ></iframe>
+      </div>
+    </div>
+
+    <!-- Download modal -->
+    <div
+      id="downloadModal"
+      class="modal-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dlTitle"
+    >
+      <div class="modal">
+        <h3 id="dlTitle">Select files to download</h3>
+        <div class="modal-tools">
+          <label
+            ><input id="toggleAll" type="checkbox" checked /> Select all</label
+          >
+          <span id="selCount">(0 selected)</span>
+        </div>
+        <div id="fileList" class="file-list"></div>
+        <div class="modal-actions">
+          <button id="cancelDownload" class="btn">Cancel</button>
+          <button id="confirmDownload" class="btn primary">Download</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="combineModal" class="modal-backdrop" style="display: none">
+      <div class="modal">
+        <h3>Combine CSS + JS into HTML</h3>
+        <label
+          >Target HTML:
+          <select id="targetHtml" class="inputb"></select>
+        </label>
+        <div>
+          <h4>CSS files:</h4>
+          <div id="cssList"></div>
+        </div>
+        <div>
+          <h4>JS files:</h4>
+          <div id="jsList"></div>
+        </div>
+        <div class="modal-actions">
+          <button id="cancelCombine" class="btn">Cancel</button>
+          <button id="confirmCombine" class="btn primary">Combine</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="findtoolbar">
+      <input id="find" placeholder="Find…" class="inputb" />
+      <input id="replace" placeholder="Replace with…" class="inputb" />
+      <button id="findNext" class="btn ghost">Next</button>
+      <button id="findPrev" class="btn ghost">Prev</button>
+      <button id="doReplace" class="btn ghost">Replace</button>
+      <button id="replaceAll" class="btn ghost">Replace All</button>
+      <button id="closeToolbar" class="btn ghost">✕</button>
+    </div>
+
+    <div id="playerWrapper" class="closed">
+      <div id="playerContainer">
+        <iframe
+          id="ytplayer"
+          width="320"
+          height="180"
+          src="https://www.youtube.com/embed/VIDEO_ID?rel=0"
+          frameborder="0"
+          allowfullscreen
+        >
+        </iframe>
+
+        <input
+          type="text"
+          id="videoUrl"
+          class="inputb"
+          placeholder="Paste YouTube URL here"
+        />
+        <button id="playvid" onclick="loadVideo()" class="btn">Play</button>
+      </div>
+    </div>
+
+    <div id="AIModal" class="modal-backdrop" style="display: none">
+      <div class="modal2">
+        <svg
+          style="height: 30px"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>Gemini</title>
+          <path
+            d="M20.616 10.835a14.147 14.147 0 01-4.45-3.001 14.111 14.111 0 01-3.678-6.452.503.503 0 00-.975 0 14.134 14.134 0 01-3.679 6.452 14.155 14.155 0 01-4.45 3.001c-.65.28-1.318.505-2.002.678a.502.502 0 000 .975c.684.172 1.35.397 2.002.677a14.147 14.147 0 014.45 3.001 14.112 14.112 0 013.679 6.453.502.502 0 00.975 0c.172-.685.397-1.351.677-2.003a14.145 14.145 0 013.001-4.45 14.113 14.113 0 016.453-3.678.503.503 0 000-.975 13.245 13.245 0 01-2.003-.678z"
+            fill="#3186FF"
+          ></path>
+          <path
+            d="M20.616 10.835a14.147 14.147 0 01-4.45-3.001 14.111 14.111 0 01-3.678-6.452.503.503 0 00-.975 0 14.134 14.134 0 01-3.679 6.452 14.155 14.155 0 01-4.45 3.001c-.65.28-1.318.505-2.002.678a.502.502 0 000 .975c.684.172 1.35.397 2.002.677a14.147 14.147 0 014.45 3.001 14.112 14.112 0 013.679 6.453.502.502 0 00.975 0c.172-.685.397-1.351.677-2.003a14.145 14.145 0 013.001-4.45 14.113 14.113 0 016.453-3.678.503.503 0 000-.975 13.245 13.245 0 01-2.003-.678z"
+            fill="url(#lobe-icons-gemini-fill-0)"
+          ></path>
+          <path
+            d="M20.616 10.835a14.147 14.147 0 01-4.45-3.001 14.111 14.111 0 01-3.678-6.452.503.503 0 00-.975 0 14.134 14.134 0 01-3.679 6.452 14.155 14.155 0 01-4.45 3.001c-.65.28-1.318.505-2.002.678a.502.502 0 000 .975c.684.172 1.35.397 2.002.677a14.147 14.147 0 014.45 3.001 14.112 14.112 0 013.679 6.453.502.502 0 00.975 0c.172-.685.397-1.351.677-2.003a14.145 14.145 0 013.001-4.45 14.113 14.113 0 016.453-3.678.503.503 0 000-.975 13.245 13.245 0 01-2.003-.678z"
+            fill="url(#lobe-icons-gemini-fill-1)"
+          ></path>
+          <path
+            d="M20.616 10.835a14.147 14.147 0 01-4.45-3.001 14.111 14.111 0 01-3.678-6.452.503.503 0 00-.975 0 14.134 14.134 0 01-3.679 6.452 14.155 14.155 0 01-4.45 3.001c-.65.28-1.318.505-2.002.678a.502.502 0 000 .975c.684.172 1.35.397 2.002.677a14.147 14.147 0 014.45 3.001 14.112 14.112 0 013.679 6.453.502.502 0 00.975 0c.172-.685.397-1.351.677-2.003a14.145 14.145 0 013.001-4.45 14.113 14.113 0 016.453-3.678.503.503 0 000-.975 13.245 13.245 0 01-2.003-.678z"
+            fill="url(#lobe-icons-gemini-fill-2)"
+          ></path>
+          <defs>
+            <linearGradient
+              gradientUnits="userSpaceOnUse"
+              id="lobe-icons-gemini-fill-0"
+              x1="7"
+              x2="11"
+              y1="15.5"
+              y2="12"
+            >
+              <stop stop-color="#08B962"></stop>
+              <stop offset="1" stop-color="#08B962" stop-opacity="0"></stop>
+            </linearGradient>
+            <linearGradient
+              gradientUnits="userSpaceOnUse"
+              id="lobe-icons-gemini-fill-1"
+              x1="8"
+              x2="11.5"
+              y1="5.5"
+              y2="11"
+            >
+              <stop stop-color="#F94543"></stop>
+              <stop offset="1" stop-color="#F94543" stop-opacity="0"></stop>
+            </linearGradient>
+            <linearGradient
+              gradientUnits="userSpaceOnUse"
+              id="lobe-icons-gemini-fill-2"
+              x1="3.5"
+              x2="17.5"
+              y1="13.5"
+              y2="12"
+            >
+              <stop stop-color="#FABC12"></stop>
+              <stop offset=".46" stop-color="#FABC12" stop-opacity="0"></stop>
+            </linearGradient>
+          </defs>
+        </svg>
+        <svg
+          style="height: 30px"
+          fill="currentColor"
+          fill-rule="evenodd"
+          viewBox="0 0 98 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>Gemini</title>
+          <path
+            d="M21.186 12.67c0 2.649-.786 4.759-2.359 6.33-1.766 1.87-4.09 2.806-6.969 2.806-2.756 0-5.088-.953-6.996-2.86C2.954 17.04 2 14.693 2 11.904c0-2.789.954-5.137 2.862-7.043C6.77 2.953 9.102 2 11.858 2c1.396 0 2.712.247 3.949.741 1.236.495 2.252 1.192 3.047 2.092l-1.749 1.748c-.583-.706-1.338-1.258-2.266-1.655a7.49 7.49 0 00-2.981-.596c-2.067 0-3.816.715-5.247 2.145-1.413 1.448-2.12 3.257-2.12 5.428s.707 3.98 2.12 5.428c1.431 1.43 3.18 2.145 5.247 2.145 1.89 0 3.463-.53 4.717-1.588 1.254-1.06 1.979-2.516 2.173-4.37h-6.89v-2.277h9.196c.088.495.132.971.132 1.43m7.652-4.633c1.946 0 3.494.629 4.645 1.886 1.15 1.257 1.726 3.018 1.726 5.282l-.027.268H24.877c.036 1.284.464 2.318 1.285 3.102.82.785 1.802 1.177 2.944 1.177 1.57 0 2.802-.784 3.694-2.354l2.195 1.07a6.54 6.54 0 01-2.45 2.595C31.503 21.688 30.32 22 29 22c-1.927 0-3.516-.66-4.765-1.98-1.249-1.319-1.873-2.986-1.873-5.001 0-1.997.606-3.66 1.82-4.988 1.213-1.329 2.766-1.993 4.657-1.993m-.053 2.247c-.928 0-1.727.285-2.396.856-.67.57-1.11 1.337-1.325 2.3h7.522c-.071-.91-.442-1.663-1.111-2.26-.67-.598-1.566-.896-2.69-.896M39.247 21.53h-2.455V8.465h2.348v1.813h.107c.374-.64.947-1.173 1.721-1.6.774-.427 1.544-.64 2.309-.64.96 0 1.806.222 2.535.667a3.931 3.931 0 011.601 1.84c1.085-1.671 2.589-2.507 4.51-2.507 1.513 0 2.678.462 3.496 1.387.819.924 1.228 2.24 1.228 3.946v8.16h-2.455v-7.786c0-1.227-.223-2.112-.668-2.654-.444-.542-1.192-.813-2.241-.813-.943 0-1.735.4-2.375 1.2-.64.8-.961 1.742-.961 2.826v7.227h-2.455v-7.786c0-1.227-.223-2.112-.668-2.654-.444-.542-1.191-.813-2.241-.813-.943 0-1.735.4-2.375 1.2-.64.8-.961 1.742-.961 2.826v7.227zM61.911 3.93c0 .48-.17.89-.508 1.228a1.675 1.675 0 01-1.23.508c-.48 0-.89-.17-1.229-.508a1.673 1.673 0 01-.508-1.228c0-.481.17-.89.508-1.229a1.675 1.675 0 011.23-.508c.48 0 .89.17 1.23.508.338.338.507.748.507 1.228m-.11 4.514v13.088h-2.857V8.443h2.857zM80 3.93c0 .48-.17.89-.508 1.228a1.675 1.675 0 01-1.23.508c-.48 0-.89-.17-1.229-.508a1.673 1.673 0 01-.508-1.228c0-.481.17-.89.508-1.229a1.675 1.675 0 011.23-.508c.48 0 .89.17 1.23.508.338.338.507.748.507 1.228m-.11 4.514v13.088h-2.857V8.443h2.857zm-16.343.022h2.349v1.813h.107c.373-.64.947-1.173 1.721-1.6a4.935 4.935 0 012.415-.64c1.601 0 2.833.458 3.696 1.373.863.916 1.294 2.218 1.294 3.907v8.213h-2.455v-8.053c-.053-2.133-1.13-3.2-3.229-3.2-.978 0-1.797.395-2.455 1.187-.658.79-.987 1.737-.987 2.84v7.226h-2.456V8.465z"
+          ></path>
+        </svg>
+        <select id="AISelect" class="inputb">
+          <option value="" disabled>-Gemini Models-</option>
+          <option value="gemini-2.5-flash-lite">Gemini 2.5 Flash lite</option>
+          <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
+          <option value="gemini-2.5-pro">Gemini 2.5 Pro</option>
+          <option value="gemini-2.0-flash-lite">Gemini 2.0 Flash lite</option>
+          <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
+          
+        </select>
+        <select id="AISelectChar" class="inputb">
+          <option value="" disabled>-Characters-</option>
+          <option value="gem">Default Gemini</option>
+          <option value="astra">Astra</option>
+          <option value="miles">Miles</option>
+          <option value="midnight">Midnight</option>
+          <option value="scepter">Scepter</option>
+          <option value="mango">Mango</option>
+          <option value="crimson">Crimson</option>
+          <option value="witan">Witan</option>
+           <option value="alek">Alek</option>
+        </select>
+
+        <div id="chat"></div>
+        <div id="inputBar">
+          <input
+            id="input"
+            class="inputb"
+            placeholder="Type a message and press Enter..."
+          />
+        </div>
+
+        <div class="modal-actions">
+          <button id="send" class="btn ghost">Send</button>
+          <button id="clearBtn" class="btn danger">Clear All</button>
+          <button id="Close" class="btn">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="colorModal" class="modal-backdrop" style="display: none">
+      <div class="modal">
+        <h3>Pick a Color</h3>
+        <input type="color" id="modalColorInput" class="clrp" />
+        <div class="modal-actions">
+          <button id="colorCancel" class="btn">Cancel</button>
+          <button id="colorOk" class="btn primary">OK</button>
+        </div>
+      </div>
+    </div>
+    
+   
+
+    <div id="setModal" class="modal-backdrop" style="display: none">
+      <div class="modal">
+        <h3>Settings</h3>
+
+        <p style="display: inline-block">CodeMirror Theme:&nbsp;</p>
+        <select id="themeSelect" class="inputb">
+          <option value="default">Default</option>
+          <option value="3024-day">3024-Day</option>
+          <option value="3024-night">3024-Night</option>
+          <option value="abbott">Abbott</option>
+          <option value="abcdef">ABCDEF</option>
+          <option value="ambiance">Ambiance</option>
+          <option value="ayu-dark">Ayu-Dark</option>
+          <option value="ayu-mirage">Ayu-Mirage</option>
+          <option value="base16-dark">Base16-Dark</option>
+          <option value="base16-light">Base16-Light</option>
+          <option value="bespin">Bespin</option>
+          <option value="blackboard">Blackboard</option>
+          <option value="cobalt">Cobalt</option>
+          <option value="colorforth">Colorforth</option>
+          <option value="darcula">Darcula</option>
+          <option value="dracula">Dracula</option>
+          <option value="duotone-dark">Duotone-Dark</option>
+          <option value="duotone-light">Duotone-Light</option>
+          <option value="eclipse">Eclipse</option>
+          <option value="elegant">Elegant</option>
+          <option value="erlang-dark">Erlang-Dark</option>
+          <option value="gruvbox-dark">Gruvbox-Dark</option>
+          <option value="hopscotch">Hopscotch</option>
+          <option value="icecoder">Icecoder</option>
+          <option value="idea">Idea</option>
+          <option value="isotope">Isotope</option>
+          <option value="juejin">Juejin</option>
+          <option value="lesser-dark">Lesser-Dark</option>
+          <option value="liquibyte">Liquibyte</option>
+          <option value="lucario">Lucario</option>
+          <option value="material">Material</option>
+          <option value="material-darker">Material-Darker</option>
+          <option value="material-palenight">Material-Palenight</option>
+          <option value="material-ocean">Material-Ocean</option>
+          <option value="mbo">MBO</option>
+          <option value="mdn-like">MDN-Like</option>
+          <option value="midnight">Midnight</option>
+          <option value="monokai">Monokai</option>
+          <option value="moxer">Moxer</option>
+          <option value="neat">Neat</option>
+          <option value="neo">Neo</option>
+          <option value="night">Night</option>
+          <option value="nord">Nord</option>
+          <option value="oceanic-next">Oceanic-Next</option>
+          <option value="panda-syntax">Panda-Syntax</option>
+          <option value="paraiso-dark">Paraiso-Dark</option>
+          <option value="paraiso-light">Paraiso-Light</option>
+          <option value="pastel-on-dark">Pastel-on-Dark</option>
+          <option value="railscasts">Railscasts</option>
+          <option value="rubyblue">Rubyblue</option>
+          <option value="seti">Seti</option>
+          <option value="shadowfox">Shadowfox</option>
+          <option value="solarized">Solarized</option>
+          <option value="ssms">SSMS</option>
+          <option value="the-matrix">The-Matrix</option>
+          <option value="tomorrow-night-bright">Tomorrow-Night-Bright</option>
+          <option value="tomorrow-night-eighties">
+            Tomorrow-Night-Eighties
+          </option>
+          <option value="ttcn">TTCN</option>
+          <option value="twilight">Twilight</option>
+          <option value="vibrant-ink">Vibrant-Ink</option>
+          <option value="xq-dark">XQ-Dark</option>
+          <option value="xq-light">XQ-Light</option>
+          <option value="yeti">Yeti</option>
+          <option value="yonce">Yonce</option>
+          <option value="zenburn">Zenburn</option>
+        </select>
+        <br />
+
+        <p style="display: inline-block">Site Theme:&nbsp;</p>
+        <select id="themeSelect2" class="inputb">
+          <option value="default">Default</option>
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+        </select>
+        <br />
+        <p style="display: inline-block">YouTube Size:&nbsp;</p>
+        <select id="sizeSelector" class="inputb">
+          <option value="320x180">Mini (320x180)</option>
+          <option value="640x360">Small (640x360)</option>
+          <option value="854x480">Medium (854x480)</option>
+          <option value="1280x720">Large (1280x720)</option>
+          <option value="1920x1080">HD (1920x1080)</option>
+        </select>
+        <div class="modal-actions">
+          <button id="setClose" class="btn">Close</button>
+        </div>
+      </div>
+    </div>
+
+  </body>
+  <script src="script.js"></script>
+</html>
