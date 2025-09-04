@@ -577,4 +577,59 @@
       .svg {
         color: var(--text);
       }
+  /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, #58a6ff, #1f6feb);
+      color: white;
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      max-width: 600px;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+    .hero button {
+      background: #0d1117;
+     
+     
+    }
+    .hero button:hover {
+      background: #161b22;
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 4rem 2rem;
+      
+    }
+    .feature {
+      background: #f3f4f6;
+      padding: 2rem;
+      border-radius: 8px;
+      text-align: center;
+      transition: transform 0.3s;
+        background: #1b2430;
+    }
+    .feature:hover {
+      transform: translateY(-5px);
+    }
+    .feature h3 {
+      margin-bottom: 1rem;
+      color: white;
+    }
+    .feature p  {
+      margin-bottom: 1rem;
+      color: white;
+    }
     
