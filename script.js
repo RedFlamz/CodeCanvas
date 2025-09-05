@@ -1125,7 +1125,10 @@ try {
         candidate.output ||
         data.text ||
         "No response";
-    }
+    }  catch (err) {
+  console.error("Unexpected error:", err);
+  botReply = "Something went wrong";
+}
   } else {
      try {
        let GAPI_KEY = keyValue;
@@ -1149,10 +1152,10 @@ try {
               candidate.content?.parts?.[0]?.text ||
               candidate.output ||
               'No response';
-          } 
-} catch (err) {
+          }  catch (err) {
   console.error("Unexpected error:", err);
   botReply = "Something went wrong";
+}
 }
 
           // Stop typing animation
@@ -1343,5 +1346,6 @@ try {
         });
 
       }
+
 
 
