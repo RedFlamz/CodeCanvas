@@ -1149,7 +1149,10 @@ try {
               candidate.content?.parts?.[0]?.text ||
               candidate.output ||
               'No response';
-          }
+          } 
+} catch (err) {
+  console.error("Unexpected error:", err);
+  botReply = "Something went wrong";
 }
 
           // Stop typing animation
@@ -1340,4 +1343,5 @@ try {
         });
 
       }
+
 
