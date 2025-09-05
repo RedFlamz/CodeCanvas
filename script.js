@@ -14,18 +14,24 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
- window.onload = function() {
-      // Load saved value (if any)
-      let savedk = localStorage.getItem("keyinput");
-      if (savedk !== null) {
-        document.getElementById("keyinput").value = savedk;
-      }
+  const keyinput = document.getElementById('keyinput')
+      
+      keyinput.addEventListener('change', function() {
+  localStorage.setItem('keyinput', this.value);
+ 
+});
 
-      // Auto-save when changed
-      document.getElementById("keyinput").addEventListener("input", function() {
-        localStorage.setItem("keyinput", this.value);
-      });
-    };
+// Optional: To load the saved selection when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+  const keyinputsv = localStorage.getItem('keyinput');
+  if (keyinputsv) {
+   keyinput.value = keyinputsv;
+   
+  }
+});
+
+
+ 
       
       
       const selector = document.getElementById('sizeSelector');
@@ -1326,4 +1332,5 @@ ${mainHtml || ''}
         });
 
       }
+
 
