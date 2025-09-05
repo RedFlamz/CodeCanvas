@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CodeCanvas - Uptime</title>
+  
+   <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0f14;
+      color: white;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    #monitor-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .card {
+      background: #121820;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.03);
+    }
+    .status {
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    .up { background: #c8f7c5; color: #2a7b2a; }
+    .down { background: #f8c5c5; color: #7b2a2a; }
+    .paused { background: #ffe9b3; color: #8a6d00; }
+    small { color: #575757; }
+  </style>
+    <link
+      href="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAASUlJADo6OgArKysAUR04AA0NDQBPKhwAR0dHAFEqHAA4ODgAKSkpAEInHQAaGhoAVFRUADYYJwBFRUUANjY2ADQgGQAnJycACwYJAFQaSgBKHUIAUlJSAENDQwAvHhcANDQ0AEQcPQAWFhYALxcrAD4bOABQUFAAJxMeAEFBQQA/JRwAMjIyAFUdOgAjIyMAFBQUAEQbMAAFBQUATk5OACwVIQA/Pz8AXBw9ADAwMAAhISEAEhISAFIbSQBMTEwAZBtAAD09PQAuLi4AHA4VAB8fHwAWFBUAEBAQAEwdRABFKB0ASkpKADs7OwAsLCwAHR0dAAUDBAA6GjUAMhclAEhISABZHTwAOTk5ACoqKgAbGxsATR1FAD8aLQBVVVUARkZGAGAcPwBRHEgAIRAZADc3NwAoKCgAQiYcABkZGQAKCgoAZxtCAFNTUwBEREQANhkxADU1NQAmJiYAMx8YABcXFwARCQ0ATCkcAAgICABRUVEAQkJCADMzMwAkJCQATR02ABUVFQA7JBsAT09PAEgpHQD///8AQEBAAEopHQAxMTEATx1HAAQEBABVKhoAOxkqADsbNQBNTU0APj4+AFcYTQAvLy8AFgsRACAgIABHHUAASB1AADw8PAAtLS0AMxguAEEcOwAeHh4AUyobAA8PDwBWGUsAOCIaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAViIsPApXJDUMGy4FXGsAAAlWXyx4MwMkNUVZLn0TPgACCVZfVlgYAyQ1RQxzWhMnMgJDd2N/EXISJCRMNDY3USpwFwshY00zAzwpH3QMJTdeQWU5T3AZaRkOQAotPVBiMFtoZRdDTTtHbWlOYC09UAgGWwFwdyBmJglyPHgKLXt8CG9eZ2YEYSpWZhB5HEQkbF0PFzBCIw9mCTJuVXkzEg0HSWRKKzoqMl56HT8QeERBBwdSMSheIEF1Gnp3GWkzAUFBUxYPVG84FXYXQ00ZaQFBAQEHB11LakZBcHdDTRkBAQFBQVMUL0swIGdwO0NNAQEBQUhxfhQeVBcgZ3B3QwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+      rel="icon"
+      type="image/x-icon"
+    />
+</head>
+<body>
+  <h1>CodeCanvas Uptime</h1>
+  <div id="monitor-list">Loading monitors...</div>
+
+  <script>
+    const apiKey = "ur3097684-5403d5833c64298b969d1b18"; // Use Read-Only Key for safety
+
+    async function loadMonitors() {
+      try {
+        const res = await fetch("https://api.uptimerobot.com/v2/getMonitors", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: `api_key=${apiKey}&format=json&logs=1&custom_uptime_ratios=30`
+        });
+
+        const data = await res.json();
+        const container = document.getElementById("monitor-list");
+        container.innerHTML = "";
+
+        data.monitors.forEach(m => {
+          let statusClass = "paused", statusText = "⏸ Paused";
+          if (m.status === 2) { statusClass = "up"; statusText = "🟢 Up"; }
+          else if (m.status === 9) { statusClass = "down"; statusText = "🔴 Down"; }
+
+          const lastCheck = new Date(m.create_datetime * 1000)
+
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <h3>${m.friendly_name}</h3>
+            <p><span class="status ${statusClass}">${statusText}</span></p>
+            <p><b>URL:</b> ${m.url}</p>
+            <p><b>Uptime (30 days):</b> ${m.custom_uptime_ratio || "N/A"}%</p>
+            <small>Last Check: ${lastCheck}</small>
+          `;
+          container.appendChild(card);
+        });
+
+      } catch (err) {
+        document.getElementById("monitor-list").textContent =
+          "Error loading monitors: " + err.message;
+      }
+    }
+
+    loadMonitors();
+  </script>
+</body>
+</html>
