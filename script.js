@@ -13,6 +13,19 @@ document.addEventListener('DOMContentLoaded', function() {
    
   }
 });
+
+ window.onload = function() {
+      // Load saved value (if any)
+      let savedk = localStorage.getItem("keyinput");
+      if (savedk !== null) {
+        document.getElementById("keyinput").value = savedk;
+      }
+
+      // Auto-save when changed
+      document.getElementById("keyinput").addEventListener("input", function() {
+        localStorage.setItem("keyinput", this.value);
+      });
+    };
       
       
       const selector = document.getElementById('sizeSelector');
@@ -1313,3 +1326,4 @@ ${mainHtml || ''}
         });
 
       }
+
