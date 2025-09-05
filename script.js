@@ -1100,63 +1100,30 @@ ${mainHtml || ''}
         const prompt = buildPromptWithMemory(text);
         sessionHistory.push({ role: 'user', text });
 
-    let botReply = "No response";
+      try {
+  let botReply = "No response";
 
-// Read the input value
-const keyValue = document.getElementById("keyinput").value;
+  if (MODEL.toLowerCase().includes("gemini")) {
+    // Call your Replit backend instead of Google's API directly
+    const res = await fetch("https://e12b448d-90b0-4fd8-a646-43ee1e006d53-00-1zc8qsbvepsyg.worf.replit.dev/gemini", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        prompt: prompt,
+        model: MODEL, // e.g., "gemini-1.5-flash" or "gemini-1.5-pro"
+      }),
+    });
 
-try {
-  if (keyValue === "") {
-    // 🔹 Run your original Gemini code
-    if (MODEL.toLowerCase().includes("gemini")) {
-      const res = await fetch("https://e12b448d-90b0-4fd8-a646-43ee1e006d53-00-1zc8qsbvepsyg.worf.replit.dev/gemini", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          prompt: prompt,
-          model: MODEL,
-        }),
-      });
+    const data = await res.json();
 
-      const data = await res.json();
-      const candidate = data?.candidates?.[0] || {};
-      botReply =
-        candidate.content?.parts?.[0]?.text ||
-        candidate.output ||
-        data.text ||
-        "No response";
-    }  catch (err) {
-  console.error("Unexpected error:", err);
-  botReply = "Something went wrong";
-}
-  } else {
-     try {
-       let GAPI_KEY = keyValue;
-          let botReply = 'No response';
-
-          if (MODEL.toLowerCase().includes('gemini')) {
-            // Gemini API
-            const res = await fetch(
-              `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${GAPI_KEY}`,
-              {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  contents: [{ parts: [{ text: prompt }] }],
-                }),
-              },
-            );
-            const data = await res.json();
-            const candidate = data?.candidates?.[0] || {};
-            botReply =
-              candidate.content?.parts?.[0]?.text ||
-              candidate.output ||
-              'No response';
-          }  catch (err) {
-  console.error("Unexpected error:", err);
-  botReply = "Something went wrong";
-}
-}
+    // Try to extract the main text response
+    const candidate = data?.candidates?.[0] || {};
+    botReply =
+      candidate.content?.parts?.[0]?.text ||
+      candidate.output ||
+      data.text ||
+      "No response";
+  }
 
           // Stop typing animation
           clearInterval(interval);
@@ -1346,6 +1313,3 @@ try {
         });
 
       }
-
-
-
