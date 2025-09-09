@@ -1123,7 +1123,7 @@ ${mainHtml || ''}
       try {
   let botReply = "No response";
      
-  if (document.getElementById('keyinput').value; === '') {
+  if (document.getElementById('keyinput').value === '') {
     // Call your Replit backend instead of Google's API directly
     const res = await fetch("https://e12b448d-90b0-4fd8-a646-43ee1e006d53-00-1zc8qsbvepsyg.worf.replit.dev/gemini", {
       method: "POST",
@@ -1351,5 +1351,6 @@ ${mainHtml || ''}
         });
 
       }
+
 
 
