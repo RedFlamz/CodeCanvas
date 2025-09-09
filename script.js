@@ -811,6 +811,7 @@ ${mainHtml || ''}
       }
 
       // Show the color picker
+      
       const modala = document.getElementById('AIModal');
       const btnC = document.getElementById('Close');
       const btnOpen2 = document.getElementById('btnOpenC');
@@ -926,7 +927,7 @@ ${mainHtml || ''}
       });
 
       
-
+    
       const chatEl = document.getElementById('chat');
       const inputEl = document.getElementById('input');
       const sendBtn = document.getElementById('send');
@@ -1121,8 +1122,8 @@ ${mainHtml || ''}
 
       try {
   let botReply = "No response";
-
-  if (MODEL.toLowerCase().includes("gemini")) {
+     
+  if (document.getElementById('keyinput').value; === '') {
     // Call your Replit backend instead of Google's API directly
     const res = await fetch("https://e12b448d-90b0-4fd8-a646-43ee1e006d53-00-1zc8qsbvepsyg.worf.replit.dev/gemini", {
       method: "POST",
@@ -1142,7 +1143,25 @@ ${mainHtml || ''}
       candidate.output ||
       data.text ||
       "No response";
-  }
+  } else {
+            let GAPI_KEY = document.getElementById('keyinput').value; 
+            const res = await fetch(
+              `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${GAPI_KEY}`,
+              {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  contents: [{ parts: [{ text: prompt }] }],
+                }),
+              },
+            );
+            const data = await res.json();
+            const candidate = data?.candidates?.[0] || {};
+            botReply =
+              candidate.content?.parts?.[0]?.text ||
+              candidate.output ||
+              'No response';
+          }
 
           // Stop typing animation
           clearInterval(interval);
@@ -1332,4 +1351,5 @@ ${mainHtml || ''}
         });
 
       }
+
 
