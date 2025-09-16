@@ -33,19 +33,51 @@
     />
 </head>
 <body>
-<div id="google_translate_element"></div>
+<!-- Google Translate Icon -->
+<div id="translate-icon" title="Translate"></div>
+
+<!-- Hidden Google Translate element -->
+<div id="google_translate_element" style="display:none;"></div>
+
+<style>
+/* Hide Google Translate banner */
+.goog-te-banner-frame.skiptranslate { display: none !important; } 
+body { top: 0px !important; }
+
+/* Style the translate icon */
+#translate-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/5/5e/Google_Translate_icon.png') no-repeat center center;
+  background-size: contain;
+  z-index: 9999;
+}
+</style>
 
 <script type="text/javascript">
 function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'en',
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-  }, 'google_translate_element');
+  new google.translate.TranslateElement(
+    {pageLanguage: 'en', autoDisplay: false}, 
+    'google_translate_element'
+  );
 }
+
+// Load Google Translate script
+var gtScript = document.createElement('script');
+gtScript.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+document.head.appendChild(gtScript);
+
+// When icon is clicked, open Google Translate menu
+document.getElementById('translate-icon').addEventListener('click', () => {
+  const gtFrame = document.querySelector('iframe.goog-te-menu-frame');
+  if (!gtFrame) return alert("Languages are loading, try again in a second.");
+  gtFrame.contentWindow.document.querySelector('.goog-te-menu2').style.display = 'block';
+});
 </script>
-
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
   <header>
      <img
           alt=""
