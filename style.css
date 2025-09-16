@@ -632,4 +632,7 @@
       margin-bottom: 1rem;
       color: white;
     }
-    
+
+/* Hide Google Translate top bar */
+.goog-te-banner-frame.skiptranslate { display: none !important; }
+body { top: 0 !important; } /* reset page shift */
