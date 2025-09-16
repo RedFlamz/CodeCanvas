@@ -872,29 +872,26 @@
         </select>
  <br />
         <p style="display: inline-block">Translate:&nbsp;</p>
-		  <div id="google_translate_element"></div>
+		 <div id="translate-wrapper"></div>
+
 <script>
 function googleTranslateElementInit() {
   new google.translate.TranslateElement(
     {pageLanguage: 'en'},
     'translate-wrapper'
   );
-}
 
-// Wait for the widget to load, then add the class directly to <select>
-function applySelectClass() {
-  const select = document.querySelector('#translate-wrapper select');
-  if (select) {
-    select.className = 'inputb'; // directly assign class
-  } else {
-    setTimeout(applySelectClass, 100); // retry until it exists
-  }
+  // Apply your class after a short delay to ensure <select> exists
+  setTimeout(() => {
+    const select = document.querySelector('#translate-wrapper select');
+    if (select) select.className = 'inputb';
+  }, 500);
 }
-
-googleTranslateElementInit();
-applySelectClass();
 </script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- Load Google Translate script, callback will auto-run googleTranslateElementInit -->
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
         <div class="modal-actions">
           <button id="setClose" class="btn">Close</button>
