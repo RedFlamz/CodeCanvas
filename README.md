@@ -16,6 +16,9 @@ Switch between light, dark, and more themes effortlessly.
 - 🔗 Integrations
 YouTube and Google Gemini integration for questions and learning.
 
+- 🌈 Color Picker
+Built in color picker with auto paste.
+
 ## 📸 Preview
 
 - Editor <img width="1920" height="905" alt="Editor" src="https://github.com/user-attachments/assets/df19bc8c-36e9-4931-b7e4-49446a590e2b" />
