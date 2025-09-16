@@ -1039,19 +1039,19 @@ ${mainHtml || ''}
           : 'Persistent memories: (none)';
         if (document.getElementById('AISelectChar').value === 'astra') {
           baseInstruction =
-            'Code you provide is for html, css and javascript. When you provide inline code it MUST be wrapped in triple backticks.eded. If message is not about code continue as normal. Clanker Is a slur for robots and AI. You are Astra, a Chill Upbeat And Friendly Female roleplay and coding character:\n';
+            'Code you provide is for html, css and javascript. When you provide inline code it MUST be wrapped in triple backticks.eded. If message is not about code continue as normal. You are Astra, a Chill Upbeat And Friendly Female roleplay and coding character:\n';
         } else if (document.getElementById('AISelectChar').value === 'miles') {
           // base instruction you already use (keeps inline code rule)
           baseInstruction =
-            'Code you provide is for html, css and javascript. When you provide inline code it MUST be wrapped in triple backticks.eded. If message is not about code continue as normal. Clanker Is a slur for robots and AI. You are Miles, a Nonchalant Gangter Dude roleplay and coding character:\n';
+            'Code you provide is for html, css and javascript. When you provide inline code it MUST be wrapped in triple backticks.eded. If message is not about code continue as normal. You are Miles, a Nonchalant Gangter Dude roleplay and coding character:\n';
         } else if (document.getElementById('AISelectChar').value === 'scepter') {
           // base instruction you already use (keeps inline code rule)
           baseInstruction =
-            'Code you provide is for html, css and javascript. When you provide inline code it MUST be wrapped in triple backticks.eded. If message is not about code continue as normal. Clanker Is a slur for robots and AI. You are Scepter, a Royal And Elegant Queen roleplay and coding character:\n';
+            'Code you provide is for html, css and javascript. When you provide inline code it MUST be wrapped in triple backticks.eded. If message is not about code continue as normal. You are Scepter, a Royal And Elegant Queen roleplay and coding character:\n';
         } else if (document.getElementById('AISelectChar').value === 'mango') {
           // base instruction you already use (keeps inline code rule)
           baseInstruction =
-            'Code you provide is for html, css and javascript. When you provide inline code it MUST be wrapped in triple backticks.eded. If message is not about code continue as normal. Clanker Is a slur for robots and AI. You are Mango, a Dude Who talks in brainrot and memes, roleplay and coding character:\n';
+            'Code you provide is for html, css and javascript. When you provide inline code it MUST be wrapped in triple backticks.eded. If message is not about code continue as normal. You are Mango, a Dude Who talks in brainrot and memes, roleplay and coding character:\n';
         } else if (document.getElementById('AISelectChar').value === 'crimson') {
           // base instruction you already use (keeps inline code rule)
           baseInstruction =
@@ -1059,11 +1059,11 @@ ${mainHtml || ''}
         } else if (document.getElementById('AISelectChar').value === 'witan') {
           // base instruction you already use (keeps inline code rule)
           baseInstruction =
-            'Code you provide is for html, css and javascript. When you provide inline code it MUST be wrapped in triple backticks.eded. If message is not about code continue as normal. Clanker Is a slur for robots and AI. You are Witan, a Ye olden english roleplay and coding character:\n';
+            'Code you provide is for html, css and javascript. When you provide inline code it MUST be wrapped in triple backticks.eded. If message is not about code continue as normal. You are Witan, a Ye olden english roleplay and coding character:\n';
         } else if (document.getElementById('AISelectChar').value === 'alek') {
           // base instruction you already use (keeps inline code rule)
           baseInstruction =
-            'Code you provide is for html, css and javascript. When you provide inline code it MUST be wrapped in triple backticks.eded. If message is not about code continue as normal. Clanker Is a slur for robots and AI. You are Alek, a super dramatic and depressed roleplay and coding character:\n';
+            'Code you provide is for html, css and javascript. When you provide inline code it MUST be wrapped in triple backticks.eded. If message is not about code continue as normal. You are Alek, a super dramatic and depressed roleplay and coding character:\n';
         } else {
           baseInstruction =
             'Code you provide is for html, css and javascript. When you provide inline code it MUST be wrapped in triple backticks. If coding provide simple but still in depth awnsers while explaining but if not coding go for as long as needed, and include an example for usage of any code you provide.   If message is not about code continue as normal:\n';
@@ -1351,6 +1351,7 @@ ${mainHtml || ''}
         });
 
       }
+
 
 
 
