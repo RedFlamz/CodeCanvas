@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://redflamz.github.io/CodeCanvas/sitemap.xml
