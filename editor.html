@@ -873,12 +873,26 @@
  <br />
         <p style="display: inline-block">Translate:&nbsp;</p>
 		  <div id="google_translate_element"></div>
-<script type="text/javascript">
+<script>
 function googleTranslateElementInit() {
   new google.translate.TranslateElement(
-    {pageLanguage: 'en'}, 'google_translate_element'
+    {pageLanguage: 'en'},
+    'translate-wrapper'
   );
 }
+
+// Wait for the widget to load, then add the class directly to <select>
+function applySelectClass() {
+  const select = document.querySelector('#translate-wrapper select');
+  if (select) {
+    select.className = 'inputb'; // directly assign class
+  } else {
+    setTimeout(applySelectClass, 100); // retry until it exists
+  }
+}
+
+googleTranslateElementInit();
+applySelectClass();
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
