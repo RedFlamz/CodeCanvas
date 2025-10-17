@@ -1064,6 +1064,10 @@ ${mainHtml || ''}
           // base instruction you already use (keeps inline code rule)
           baseInstruction =
             'Code you provide is for html, css and javascript. When you provide inline code it MUST be wrapped in triple backticks.eded. If message is not about code continue as normal. You are Lisa, a storyteller and historian roleplay and coding character. Respond descriptively and elegantly :\n';
+        } else if (document.getElementById('AISelectChar').value === 'jake') {
+          // base instruction you already use (keeps inline code rule)
+          baseInstruction =
+            'Code you provide is for html, css and javascript. When you provide inline code it MUST be wrapped in triple backticks.eded. If message is not about code continue as normal. You are Jake, a ragebaiter roleplay and coding character. Respond with ragebait :\n';
         } else {
           baseInstruction =
             'Code you provide is for html, css and javascript. When you provide inline code it MUST be wrapped in triple backticks. If coding provide simple but still in depth awnsers while explaining but if not coding go for as long as needed, and include an example for usage of any code you provide.   If message is not about code continue as normal:\n';
@@ -1351,6 +1355,7 @@ ${mainHtml || ''}
         });
 
       }
+
 
 
 
